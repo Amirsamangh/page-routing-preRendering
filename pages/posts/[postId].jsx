@@ -3,32 +3,42 @@ import Link from "next/link"
 export async function getStaticProps(context) {
 
     const { params } = context
-    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${params.userId}`)
-    const user = await res.json()
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.postId}`)
+    const post = await res.json()
+    
+    console.log(post.id);
+    
 
     return {
         props: {
-            user
+            post
         },
     }
 }
 
 export const getStaticPaths = async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users')
-    const users = await res.json()
-    const paths = users.map(u => {
-        return {
-            params: { userId: `${u.id}` }}})
+    // const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+    // const posts = await res.json()
+    // const paths = posts.map(u => {
+    //     return {
+    //         params: { postId: `${u.id}` }
+    //     }
+    // })
     return {
-        paths,
-        fallback: false
+        paths: [
+            { params: { postId: '1' } },
+            { params: { postId: '2' } },
+            { params: { postId: '3' } },
+        ],
+        fallback: 'blocking'
     }
 }
 
-const UserId = ({ user }) => {
+const PostId = ({ post }) => {
+
     return (
         <div className="relative overflow-x-auto mt-20 mx-5">
-            <Link href={'/users'}>
+            <Link href={'/posts'}>
                 <button className="px-4 py-1 my-3 me-4 bg-sky-600 hover:bg-sky-500 transition-all rounded-lg cursor-pointer">back</button>
             </Link>
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -38,41 +48,29 @@ const UserId = ({ user }) => {
                             #
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            email
+                            title
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            name
+                            body
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            username
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            phone
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            website
+                            userId
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr key={user.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                         <td className="px-6 py-4">
-                            {user.id}
+                            {post.id}
                         </td>
                         <td className="px-6 py-4">
-                            {user.email}
+                            {post.title}
                         </td>
                         <td className="px-6 py-4">
-                            {user.name}
+                            {post.body}
                         </td>
                         <td className="px-6 py-4">
-                            {user.username}
-                        </td>
-                        <td className="px-6 py-4">
-                            {user.phone}
-                        </td>
-                        <td className="px-6 py-4">
-                            {user.website}
+                            {post.userId}
                         </td>
                     </tr>
                 </tbody>
@@ -82,4 +80,4 @@ const UserId = ({ user }) => {
     )
 }
 
-export default UserId;
+export default PostId;
