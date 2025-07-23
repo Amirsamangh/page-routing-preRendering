@@ -21,13 +21,15 @@ const Index = ({ users }) => {
 
   return (
     <div className='mt-4 px-4'>
-      <Link href={'/'} className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-red-900">back</Link>
+      <Link href={'/'}>
+        <button className="px-4 py-1 my-3 me-4 bg-sky-600 hover:bg-sky-500 transition-all rounded-lg cursor-pointer">back</button>
+      </Link>
       <br />
       <br />
       <ul class="w-full text-sm font-medium border border-gray-200 rounded-lg shadow-lg bg-gray-300">
         {users.map(u => (
           <li key={u.id} className='w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600 last:border-b-0'>
-            {u.name}
+            <Link href={`/users/${u.id}`}>{u.name}</Link>
           </li>
         ))}
       </ul>
