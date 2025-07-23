@@ -1,36 +1,12 @@
-import React from 'react';
+import Link from "next/link";
 
-export async function getStaticProps() {
-  // Call an external API endpoint to get posts
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-  const posts = await res.json()
-
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
-  return {
-    props: {
-      posts,
-    },
-  }
+const Home = () => {
+    return (
+        <div className="h-100 w-full flex flex-col justify-center items-center">
+            <h1 className="mb-5 text-3xl">نمایش کاربران</h1>
+            <Link href={'/users'} class="text-white bg-blue-700 hover:!bg-blue-800 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  focus:outline-none cursor-pointer">نمایش</Link>
+        </div>
+    )
 }
 
-const Index = ({ posts }) => {
-
-  console.log(posts);
-
-  return (
-    <div className=' px-4'>
-      <div>
-        <ul className='list-disc px-4'>
-          {posts.map(p => (
-            <li key={p.id}>
-              {p.title}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-}
-
-export default Index;
+export default Home;
