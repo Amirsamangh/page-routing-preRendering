@@ -3,21 +3,21 @@ import React from 'react';
 
 export async function getStaticProps() {
   // Call an external API endpoint to get posts
-  const res = await fetch('https://jsonplaceholder.typicode.com/users')
-  const users = await res.json()
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+  const posts = await res.json()
 
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
   return {
     props: {
-      users,
+      posts,
     },
   }
 }
 
-const Index = ({ users }) => {
+const Index = ({ posts }) => {
 
-  console.log(users);
+  console.log(posts);
 
   return (
     <div className='mt-4 px-4'>
@@ -27,9 +27,9 @@ const Index = ({ users }) => {
       <br />
       <br />
       <ul class="w-full text-sm font-medium border border-gray-200 rounded-lg shadow-lg bg-gray-300">
-        {users.map(u => (
-          <li key={u.id} className='w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600 last:border-b-0'>
-            <Link href={`/users/${u.id}`}>{u.name}</Link>
+        {posts.map(p => (
+          <li key={p.id} className='w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600 last:border-b-0'>
+            <Link href={`/posts/${p.id}`}> <span className='mr-2'>{p.id}.</span> <span>{p.title}</span></Link>
           </li>
         ))}
       </ul>
