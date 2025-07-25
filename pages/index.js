@@ -7,6 +7,9 @@ const Home = () => {
             <div className="h-10 w-full flex justify-between px-10 items-center border hover:bg-cyan-800 transition-all cursor-pointer" onClick={()=>route.push('/posts')}>
                 <h1 className="mb-2 text-md text-cyan-100"> پست ها</h1>
             </div>
+            <div className="h-10 w-full flex justify-between px-10 items-center border hover:bg-cyan-800 transition-all cursor-pointer" onClick={()=>route.push('/fposts')}>
+                <h1 className="mb-2 text-md text-cyan-100">پست های فیلتر شده</h1>
+            </div>
             <div className="h-10 w-full flex justify-between px-10 items-center border hover:bg-cyan-800 transition-all cursor-pointer" onClick={()=>route.push('/users')}>
                 <h1 className="mb-2 text-md text-cyan-100"> کاربر ها</h1>
             </div>
