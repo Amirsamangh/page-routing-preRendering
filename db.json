@@ -154,5 +154,11 @@
                 "bs": "transition cutting-edge web services"
             }
         }
-    ]
+    ],
+    "admin": {
+        "sell": 10,
+        "products": 50,
+        "users": 4,
+        "carts": 2
+    }
 }

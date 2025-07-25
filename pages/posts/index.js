@@ -1,6 +1,5 @@
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import React from 'react';
+import { useRouter } from "next/navigation"
 
 export async function getStaticProps() {
   const res = await fetch('http://localhost:4000/posts')
@@ -15,9 +14,7 @@ export async function getStaticProps() {
 }
 
 const Index = ({ posts }) => {
-
   const route = useRouter()
-
   return (
     <div className='mt-4 px-4'>
       <h1 className="text-cyan-100">پست ها</h1>
